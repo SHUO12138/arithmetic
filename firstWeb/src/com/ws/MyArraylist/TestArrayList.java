@@ -19,5 +19,16 @@ public class TestArrayList {
         System.out.println(mlist.size());
         System.out.println(mlist.get(1));
         System.out.println(mlist.isEmpty());
+        System.out.println(mlist.contains("220"));
+        System.out.println(mlist.indexOf("220"));
+        System.out.println(mlist.remove(1));
+        System.out.println(mlist.remove("220"));
+        System.out.println(mlist.indexOf("220"));
+        mlist.add("220");
+        mlist.add("220");
+        System.out.println(mlist);
+        System.out.println(mlist.replaceAll("220","111"));
+        System.out.println(mlist);
+
     }
 }

@@ -38,10 +38,10 @@ public interface List {
     public boolean remove(Object i);
 
     //替换线性表中序号为i的元素为e 返回原数据元素
-    public Object replace(int i,Object obj);
+    public Object replace(int i,Object e);
 
-    //替换线性表中e替换为obj
-    public boolean replaceAll(int obj,Object e);
+    //替换线性表中obj替换为e
+    public int replaceAll(Object obj,Object e);
 
 
 }

@@ -40,10 +40,7 @@ public class MyArrayList implements  List{
 
     @Override
     public Object get(int i) {
-        if (i>=size||i<0){
-//            throw  new RuntimeException("数组下标越界异常："+i);
-            throw  new MyIndexouofBoundsException("数组下标越界异常："+i);
-        }
+        checkIndex(i);
         return elementData[i];
     }
 
@@ -54,20 +51,24 @@ public class MyArrayList implements  List{
 
     @Override
     public boolean contains(Object e) {
-        return false;
+        return this.indexOf(e)>=0;
     }
 
     @Override
     public int indexOf(Object e) {
-        return 0;
+        //循环数组判断是否包含元素
+        for (int i = 0; i < size; i++) {
+            if (elementData[i].equals(e)){
+                return i;
+            }
+        }
+        //如果不包含该元素 返回-1
+        return -1;
     }
 
     @Override
     public void add(int i, Object e) {
-        if (i>size||i<0){
-//            throw  new RuntimeException("数组下标越界异常："+i);
-            throw  new MyIndexouofBoundsException("数组下标越界异常："+i);
-        }
+        checkIndex(i);
         //数组满了就扩容
         if (size == elementData.length){
             grow();
@@ -105,22 +106,46 @@ public class MyArrayList implements  List{
 
     @Override
     public Object remove(int i) {
-        return null;
+        checkIndex(i);
+        //给要删除的元素赋值
+        Object re=elementData[i];
+        //从最后一个元素开始移动
+        for (int j = i; j < size; j++) {
+            elementData[j]=elementData[j+1];
+        }
+        elementData[size--]=null;
+        return re;
     }
 
     @Override
-    public boolean remove(Object i) {
+    public boolean remove(Object e) {
+        int i=this.indexOf(e);
+        if (i>=0){
+          remove(i);
+          return  true;
+        }
         return false;
     }
 
     @Override
-    public Object replace(int i, Object obj) {
-        return null;
+    public Object replace(int i, Object e) {
+        checkIndex(i);
+        //给要删除的元素赋值
+        Object re=elementData[i];
+        elementData[i]=e;
+        return re;
     }
 
     @Override
-    public boolean replaceAll(int obj, Object e) {
-        return false;
+    public int replaceAll(Object obj, Object e) {
+        int count=0;
+        int i= this.indexOf(obj);
+        while (i>=0){
+            this.replace(i,e);
+            i= this.indexOf(obj);
+            count++;
+        }
+        return count;
     }
     //当前数组增长一倍
     //真正底层增长一半
@@ -137,6 +162,14 @@ public class MyArrayList implements  List{
         elementData = Arrays.copyOf(elementData,elementData.length*2);
     }
 
+
+    //检查下标是否越界
+    private void checkIndex(int i){
+        if (i>size||i<0){
+//            throw  new RuntimeException("数组下标越界异常："+i);
+            throw  new MyIndexouofBoundsException("数组下标越界异常："+i);
+        }
+    }
     @Override
     public String toString() {
         if (size==0){
