@@ -1,4 +1,4 @@
-package com.ws.MyArraylist;
+package com.ws.Mylist;
 
 import java.util.ArrayList;
 

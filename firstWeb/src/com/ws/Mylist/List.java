@@ -1,4 +1,4 @@
-package com.ws.MyArraylist;
+package com.ws.Mylist;
 /**
  *  线性表接口
  * @author SHUO
@@ -7,7 +7,7 @@ public interface List {
     //返回线性表的大小，即数据元素个数
     public int size();
 
-    //返回线性表中序号为i的元素
+    //返回线性表中索引为i的元素从0 开始
     public Object get(int i);
 
     //如果线性表为空返回true，否则返回false

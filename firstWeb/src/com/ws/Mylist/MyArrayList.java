@@ -1,8 +1,7 @@
-package com.ws.MyArraylist;
+package com.ws.Mylist;
 
 import com.ws.MyException.MyIndexouofBoundsException;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 /**
