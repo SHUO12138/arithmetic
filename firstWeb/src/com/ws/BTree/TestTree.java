@@ -31,6 +31,7 @@ public class TestTree {
         //中序遍历非递归（借助栈）
         btree.inOrderByStack();
         //后序遍历非递归（借助栈）
+        btree.postOrderByStack();
 
         //按照层次遍历（借助队列）
         btree.levelOrderByStack();

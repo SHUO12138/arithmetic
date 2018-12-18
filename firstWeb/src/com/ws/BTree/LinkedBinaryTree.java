@@ -4,6 +4,10 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ * 链表实现二叉树一些性质
+ * @author ws
+ */
 public class LinkedBinaryTree implements BinaryTree {
     private Node root;
 
@@ -202,6 +206,56 @@ public class LinkedBinaryTree implements BinaryTree {
     @Override
     public void postOrderByStack() {
         System.out.print("借助栈实现后序遍历：");
+        Deque<Node> stack = new LinkedList<>();
+        Node p = root;
+        Node pre = null;
+        //在git上找的一个  逼百度靠谱多了
+        while (p!=null||!stack.isEmpty()){
+            if (p!=null){
+                stack.push(p);
+                p=p.getLeftChild();
+            }else{
+                p = stack.peek();
+                if (p.getRightChild()!=null&&pre!=p.getRightChild()){
+                    p=p.getRightChild();
+                }else{
+                    p=pre=stack.peek();
+                    System.out.print(p.getValue() + "  ");
+                    stack.pop();
+                    p=null;
+                }
+            }
+        }
+        System.out.println();
+//        //创建一个栈
+        //实在是写不下去了 在git上抄了一份
+//        Deque<Node> stack=new LinkedList<Node>();
+//        Node current=root;
+//        do{
+//            //1.如果当前不为空就将其压栈
+//            while(current!=null){
+//                stack.push(current);
+//                //将当前节点设置为左节点
+//                current=current.getLeftChild();
+//            }
+//
+//            //2.创建一个结点看是否访问过
+//            Node flag=null;
+//
+//            if (!stack.isEmpty()){
+//               current=stack.pop();
+//                //3.如果当前节点的右节点没有访问过
+//                if (current.getRightChild() != null) {
+//                   stack.push(current);
+//                   current = current.getRightChild();
+//
+//               }else {
+//                   System.out.print(current.getValue()+" ");
+//                   flag=current;
+//               }
+//            }
+//        }while (!stack.isEmpty());
+
 
         System.out.println();
     }
